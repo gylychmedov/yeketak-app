@@ -1,7 +1,9 @@
 package com.developer.yeketak.data.remote.dao
 
+import com.developer.yeketak.data.remote.dto.MusicsResponse
 import com.developer.yeketak.data.remote.dto.SlidesResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,7 +16,7 @@ interface RequestsDao {
     fun getVideoList(@Query("page") page: Int): Call<String>
 
     @GET("front/files/mp3")
-    fun getMusicList(@Query("page") page: Int): Call<String>
+    suspend fun getMusicList(@Query("page") page: Int): Response<MusicsResponse>
 
     @GET("front/file/{slug}")
     fun getMusicList(@Path("slug") slug: String): Call<String>
@@ -22,7 +24,7 @@ interface RequestsDao {
 
     //    Banners
     @GET("front/slides")
-    fun getSlidesList(): Call<SlidesResponse>
+    suspend fun getSlidesList(): Response<SlidesResponse>
 
 
     //    Top list
