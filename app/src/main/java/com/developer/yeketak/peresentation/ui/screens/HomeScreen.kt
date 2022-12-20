@@ -1,11 +1,15 @@
 package com.developer.yeketak.peresentation.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.developer.yeketak.data.local.mvvm.viewModel.homeViewModel
+import com.developer.yeketak.peresentation.components.layout.Navbar
 import com.developer.yeketak.peresentation.components.musics.MusicList
 import com.developer.yeketak.peresentation.components.slides.Slides
 
@@ -21,12 +25,13 @@ fun HomeScreen(
         homeViewModel.getMusics(1)
     }
 
-    Column {
-        Column() {
-            Slides(slides = slidesList.value)
-            musicList.value?.let {
-                MusicList(musics = musicList.value!!)
-            }
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        Navbar()
+        Slides(slides = slidesList.value)
+        musicList.value?.let {
+            MusicList(musics = musicList.value!!)
         }
     }
 }

@@ -49,9 +49,12 @@ class homeRepository @Inject constructor(
     }
 
     fun getMusics(page: Int) {
+        Log.e("Music", "Get music runned")
         val job = CoroutineScope(Dispatchers.IO).launch {
-            val response = requestApi.getMusicList(page)
+            Log.e("Music", "Get music runned with coroutine")
+            val response = requestApi.getMusicList()
             withContext(Dispatchers.Main) {
+                Log.e("music", "Get music: ${response.isSuccessful.toString()}")
                 if (response.isSuccessful && response.body() != null) {
                     musicList.value = response.body()
                 } else {

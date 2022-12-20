@@ -43,7 +43,7 @@ data class Links(
     @SerializedName("last")
     val last: String,
     @SerializedName("next")
-    val next: String,
+    val next: String?,
     @SerializedName("prev")
-    val prev: Any
+    val prev: String?
 )

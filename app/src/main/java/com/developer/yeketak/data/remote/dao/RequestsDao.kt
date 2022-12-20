@@ -15,8 +15,9 @@ interface RequestsDao {
     @GET("front/files/mp4")
     fun getVideoList(@Query("page") page: Int): Call<String>
 
+//    @Query("page") page: Int
     @GET("front/files/mp3")
-    suspend fun getMusicList(@Query("page") page: Int): Response<MusicsResponse>
+    suspend fun getMusicList(): Response<MusicsResponse>
 
     @GET("front/file/{slug}")
     fun getMusicList(@Path("slug") slug: String): Call<String>
