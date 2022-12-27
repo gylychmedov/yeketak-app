@@ -9,7 +9,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.developer.yeketak.data.local.mvvm.viewModel.homeViewModel
-import com.developer.yeketak.peresentation.components.layout.Navbar
+import com.developer.yeketak.peresentation.components.layout.Layout
 import com.developer.yeketak.peresentation.components.musics.MusicList
 import com.developer.yeketak.peresentation.components.slides.Slides
 
@@ -25,13 +25,14 @@ fun HomeScreen(
         homeViewModel.getMusics(1)
     }
 
-    Column(
-        modifier = Modifier.verticalScroll(rememberScrollState())
-    ) {
-        Navbar()
-        Slides(slides = slidesList.value)
-        musicList.value?.let {
-            MusicList(musics = musicList.value!!)
+    Layout {
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState())
+        ) {
+            Slides(slides = slidesList.value)
+            musicList.value?.let {
+                MusicList(musics = musicList.value!!)
+            }
         }
     }
 }
